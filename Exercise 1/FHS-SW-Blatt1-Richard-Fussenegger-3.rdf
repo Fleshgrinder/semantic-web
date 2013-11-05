@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF
+	xmlns:dp='http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#'
+	xmlns:gn='http://www.geonames.org/ontology#'
+	xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'
+	xmlns:rdfs='http://www.w3.org/TR/1999/PR-rdf-schema-19990303#'
+>
+	<dp:DigitalPhoto rdf:about='https://commons.wikimedia.org/wiki/File:Kunsthaus_Bregenz.jpg'>
+		<dp:title>Kunsthaus Bregenz</dp:title>
+		<dp:description>Das berühmte Kunsthaus in Bregenz.</dp:description>
+		<dp:creator>Florian Glöcklhofer</dp:creator>
+		<dp:date>2004-08-28T13:33</dp:date>
+		<dp:location rdf:resource='http://sws.geonames.org/2781503' />
+		<dp:camera rdf:resource='http://www.dbpedialite.org/things/3790493' />
+		<dp:details>Exposure time:1/500 sec (0.002);F-number:f/3.5</dp:details>
+	</dp:DigitalPhoto>
+</rdf:RDF>

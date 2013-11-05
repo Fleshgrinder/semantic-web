@@ -1,0 +1,65 @@
+@prefix rdfs: <http://www.w3.org/TR/1999/PR-rdf-schema-19990303#>.
+@prefix xml: <http://www.w3.org/XML/1998/namespace>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#camera> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tThe exact camera name and model or a URI.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#TechnicalData>;
+	rdfs:label "Camera"@en;
+	rdfs:range <http://www.w3.org/2002/07/owl#Thing>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#creator> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tThe creator of the photo.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Creator"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>;
+	rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/creator>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#date> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tThe creation datetime in W3CDTF profile of ISO 8601.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Date"@en;
+	rdfs:range <http://www.w3.org/2001/XMLSchema#date>;
+	rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/date>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#description> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tLong description of the picture's content.\r\n\t\t"@en;
+	rdfs:domain <http://purl.org/dc/elements/1.1/description>,
+		<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Description"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#details> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tTechnical details about this specific photo (e.g. ISO value).\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#TechnicalData>;
+	rdfs:label "Details"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto> a rdfs:Class;
+	rdfs:comment "\r\n\t\t\tRepresents information about a digital photo.\r\n\t\t"@en;
+	rdfs:label "Digital Photo"@en.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#id> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tUnique identifier for the creator or within the series.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Identifier"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#lens> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tThe exact lens name and model or a URI.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#TechnicalData>;
+	rdfs:label "Lens"@en;
+	rdfs:range <http://www.w3.org/2002/07/owl#Thing>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#location> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tThe location where the photo was taken.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Location"@en;
+	rdfs:range <http://www.geonames.org/ontology#name>;
+	rdfs:subPropertyOf <http://www.geonames.org/ontology>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#series> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tEither the title of the photo series or a URI to the series.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Series"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#TechnicalData> a rdfs:Class;
+	rdfs:comment "\r\n\t\t\tRepresents technical information about a digital photo.\r\n\t\t"@en;
+	rdfs:label "Technical Data"@en;
+	rdfs:subClassOf <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>.
+<http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#title> a rdf:Property;
+	rdfs:comment "\r\n\t\t\tShort description of the picture's content.\r\n\t\t"@en;
+	rdfs:domain <http://richard.fussenegger.info/FHS-SW-Blatt1-Richard-Fussenegger-2.rdf#DigitalPhoto>;
+	rdfs:label "Title"@en;
+	rdfs:range <http://www.w3.org/2000/01/rdf-schema#Literal>;
+	rdfs:subPropertyOf <http://purl.org/dc/elements/1.1/title>.
