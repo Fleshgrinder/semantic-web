@@ -1,56 +1,204 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Linked Movie Database</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <title>Linked Movie Database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-		html,body {
-			max-width:100%;
-			max-height:100%;
-			min-width:100%;
-			min-height:100%;
-			width:100%;
-			height:100%;
-		}
-	
-    	nav {
-			overflow:hidden;
-			overflow-y:auto;
-			padding:10px;
-			border-right:1px solid #ccc;
-			width: 300px;
-			min-height:100%;
-		}
-		
-		nav h1 {
-			padding-top:0;margin-top:0;
-		}
-		
-		#content {
-			position: absolute;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 301px;
-			padding: 10px;
-		}
+      html, body {
+        max-width:100%;
+        max-height:100%;
+        min-width:100%;
+        min-height:100%;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+      }
+
+      nav {
+        overflow:hidden;
+        overflow-y:auto;
+        border-right:1px solid #ccc;
+        width: 300px;
+        min-height:100%;
+      }
+
+      h1 {
+        padding-top:0;
+        margin-top:0;
+      }
+
+      h2 {
+        font-size: 1.6em;
+      }
+
+      h3 {
+        font-size: 1.3em;
+      }
+
+      #navhead {
+        position: fixed;
+        height: 155px;
+        width: inherit;
+        padding: 20px 10px 10px 10px;
+        border-bottom: 1px solid #ccc;
+        overflow:hidden;
+      }
+
+      #navcontent {
+        position: absolute;
+        top: 155px;
+        left: 0px;
+        width: inherit;
+        height: calc(100% - 155px);
+        padding: 10px;
+        overflow: auto;
+      }
+
+      #preload {
+        position: absolute;
+        top: 155px;
+        width: inherit;
+        height: 100%;
+        background-color: rgba(200,200,200,0.5);
+        z-index: 99;
+      }
+
+      a.list-group-item:hover {
+        background-color: #1e90ff;
+        color: #fff;
+      }
+
+      a.list-group-item:active {
+        backgroud-color: #1e90ff;
+        color: #fff;
+        outline: none;
+      }
+
+      a.list-group-item .active {
+        backgroud-color: #1e90ff;
+        color: #fff;
+        outline: none;
+      }     
+
+      span.runtime {
+        padding-right: 20px;
+      }
+
+      #content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 301px;
+        padding: 20px 20px 20px 40px;
+        margin-right: 300px;
+        overflow: auto;
+      }
+
+      #movie-title {
+        font-weight: bold;
+        margin-top: 0px;
+      }
+
+      #movie-poster {
+        float: right;
+        margin-top: 20px;
+        width: 215px;
+        height: 320px;
+      }
+
+      #movie-directors {
+        float: left;
+        padding-right: 25px;
+      }
+
+      #movie-actors {
+        float: left;
+        padding-left: 25px;
+      }
+
+      #movie-top {
+        width: 75%;
+        border-bottom: 1px solid #ccc;
+      }
+
+      #movie-bottom {
+        clear: left;
+        padding-top: 145px;
+      }
     </style>
-</head>
-<body>
-	<nav>
-    	<h1>Linked Movie Database</h1>
-        <button class="btn btn-success">Add Movie</button>
-        <ul></ul>
+  </head>
+  <body>
+    <nav>
+      <div id="preload"><img src=""</div>      
+      <div id="navhead"> 
+        <h1>Linked Movie Collection</h1>
+        <button class="btn btn-success">Add movie to collection</button>
+      </div>      
+      <div id="navcontent">
+        <div class="list-group">
+          <a href="#" class="list-group-item">Shining</a>
+          <a href="#" class="list-group-item">Shining</a>
+          <a href="#" class="list-group-item">Shining</a>
+        </div>
+      </div>
     </nav>
     <div id=content>
-    	<noscript>Please activate Javascript</noscript>
-        <p class=lead>Select a movie from the list to your left or add a new movie via the appropriate button.</p>
-        <p id=form style="display:none"><input class=form-control type=text placeholder="Enter the movie title to search for ..."></p>
-        <output style="display:none"></output>
+      <noscript>Please activate Javascript</noscript>
+      <p class="lead">Select one of your movies or add one with the "Add" button</p>
+      <p id=form style="display:none"><input class=form-control type=text placeholder="Enter the movie title to search for ..."></p>
+      <output>
+        <h2 id="movie-title">The Shining (1980)</h2>       
+        <p><span class="runtime"><b>Runtime:</b>&nbsp;119m</span><a href="http://www.imdb.com/title/tt0081505/" target="_blank">Movie on IMDB</a></p>
+        <div id="movie-top">
+          <span id="movie-directors">
+            <h3>Directors</h3>
+            <ol>
+              <li>Stanley Kubrick</li>
+            </ol>
+          </span>
+          <span id="movie-actors">
+            <h3>Actors</h3>
+            <ol>
+              <li>Jack Nicholson</li>
+              <li>Scatman Crothers</li>
+              <li>Barry Nelson</li>
+              <li>Shelley Duvall</li>
+              <li>Danny Lloyd</li>
+            </ol>
+          </span>          
+          <img id="movie-poster" src="http://ia.media-imdb.com/images/M/MV5BODMxMjE3NTA4Ml5BMl5BanBnXkFtZTgwNDc0NTIxMDE@._V1_SY317_CR1,0,214,317_.jpg" alt="Poster" />
+        </div>
+        <div id="movie-bottom">
+          <button type="button" class="btn btn-danger">Delete movie from collection</button>
+        </div>
+      </output>
     </div>
-	<script src="bower_components/jquery/jquery.min.js"></script>
-	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script id="movie-entry" type="text/plain">
+        <h2 id="movie-title">%TITLE%&nbsp;(%YEAR%)</h2>       
+        <p><span class="runtime"><b>Runtime:</b>&nbsp;%RUNTIME%m</span><a href="%IMDBLINK%" target="_blank">Movie on IMDB</a></p>
+        <div id="movie-top">
+          <span id="movie-directors">
+            <h3>Directors</h3>
+            <ol>
+              <li>%DIRECTORS%</li>
+            </ol>
+          </span>
+          <span id="movie-actors">
+            <h3>Actors</h3><!-- Max. 5 actors -->
+            <ol>
+              <li>%ACTORS%</li>
+            </ol>
+          </span>          
+          <img id="movie-poster" src="%IMGSRC%" alt="Poster" />
+        </div>
+        <div id="movie-bottom">
+          <button type="button" class="btn btn-danger">Delete movie from collection</button>
+        </div>
+    </script>
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src=script.js></script>
-</body>
+  </body>
 </html>
