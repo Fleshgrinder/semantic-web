@@ -1,0 +1,15 @@
+{
+  "name": "semantic_web",
+  "version": "0.0.0",
+  "authors": [
+    "Richard Fussenegger <richard@fussenegger.info>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
