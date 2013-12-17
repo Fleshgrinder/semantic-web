@@ -7,14 +7,16 @@ $(function () {
   }
 
   function linkedmdb(query, callback) {
-    $.getJSON("http://query.yahooapis.com/v1/public/yql?q=" + encodeURIComponent("SELECT * FROM html WHERE url = \"http://data.linkedmdb.org/sparql?query=" + query + "&output=json\"") + "&format=json'&callback=?", callback).fail(function (jqxhr, textStatus, error) {
+    $.getJSON("http://localhost:666/curl.php", { query: query }, callback).fail(function (jqxhr, textStatus, error) {
       console && console.log(jqxhr) && console.log(textStatus) && console.log(error);
     });
   }
 
-//  $.get(marmottaBase + "/sparql/update?update=" + encodeURIComponent("INSERT DATA { <http://movlib.org/movie/test> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.linkedmdb.org/resource/movie/film> ; <http://purl.org/dc/elements/1.1/title> 'Test movie' ; <http://purl.org/dc/elements/1.1/date> '2000' . }"), function (data) {
-//    console.log(data);
-//  }, function (err) {console.log("Error: " + err)});
+  function imdbPoster(imdbUrl, callback) {
+    $.get("http://localhost:666/curl.php", { imdb: imdbUrl }, callback).fail(function (jqxhr, textStatus, error) {
+      console && console.log(jqxhr) && console.log(textStatus) && console.log(error);
+    });
+  }
 
 	var $mission = $(".lead");
 
@@ -59,13 +61,44 @@ $(function () {
     }
   );
 
-	var $input = $("input").keypress(function () {
+	var $input = $("input").keyup(function () {
 		if ($input.val().length > 2) {
-      sparql(
-        "http://data.linkedmdb.org/sparql",
+      $(".alert").remove();
+      linkedmdb(
         "SELECT ?title ?date ?id ?imdb WHERE { ?film <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://data.linkedmdb.org/resource/movie/film> ; <http://www.w3.org/2000/01/rdf-schema#label> ?title ; <http://purl.org/dc/terms/date> ?date ; <http://data.linkedmdb.org/resource/movie/filmid> ?id ; <http://xmlns.com/foaf/0.1/page> ?imdb . FILTER(REGEX(?title, '" + $input.val() + "', 'i') && REGEX(STR(?imdb), 'www.imdb.com')) }",
         function (data) {
-          console.log(data);
+          if (!data || !data.results || !data.results.bindings) {
+            $output.html("<div class='alert alert-danger'>No Results!</div>");
+            return;
+          }
+          var $listGroup = $("<div>", { "class": "list-group" });
+          $output.html($listGroup).show();
+          data.results.bindings.forEach(function (movie) {
+            $listGroup.append($("<a>", {
+              "class": "list-group-item",
+              href: "#" + movie.id.value,
+              html: movie.title.value + " (" + movie.date.value.substring(0, 4) + ")"
+            }).data({ id: movie.id.value, title: movie.title.value, year: movie.date.value.substring(0, 4), imdb: movie.imdb.value }));
+          });
+          $listGroup.on("click", "a", function (event) {
+            var $this = $(this);
+            event.preventDefault();
+            imdbPoster($this.data("imdb"), function (src) {
+
+              marmotta(
+                "/sparql/update",
+                "INSERT DATA { <http://movlib.org/movie/" + $this.data("id") + "> " +
+                  "<http://purl.org/dc/elements/1.1/title> '" + $this.data("title") + "' ;" +
+                  "<http://purl.org/dc/elements/1.1/date> '" + $this.data("year") + "' ;" +
+                  "<http://movlib.org/poster> '" + src + "'" +
+                "}",
+                function (data) {
+                  console.log(data);
+                }
+              );
+            });
+            return false;
+          });
         }
       );
 		}

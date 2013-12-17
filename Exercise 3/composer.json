@@ -1,0 +1,12 @@
+{
+    "name": "fhs/exercise3",
+    "authors": [
+        {
+            "name": "Markus Deutschl",
+            "email": "deutschl.markus@gmail.com"
+        }
+    ],
+    "require": {
+        "electrolinux/phpquery": "dev-master"
+    }
+}
