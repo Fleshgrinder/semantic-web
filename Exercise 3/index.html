@@ -53,7 +53,8 @@
         width: inherit;
         margin: 0;
       }
-      
+
+      body:after,
       #navcontent:after {
         content: "";
         background: center url(img/preloader.gif) rgba(200, 200, 200, 0.5) no-repeat;
@@ -62,6 +63,21 @@
         right: 0;
         bottom: 0;
         left: 0;
+        opacity: 0;
+        transition-duration: 0.6s;
+        transition-property: all;
+        visibility: hidden;
+      }
+
+      #navcontent.loading:after {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      body.loading:after {
+        position: fixed;
+        opacity: 1;
+        visibility: visible;
       }
 
       a.list-group-item:hover {
@@ -79,7 +95,7 @@
         background-color: #1e90ff;
         color: #fff;
         outline: none;
-      }     
+      }
 
       span.runtime {
         padding-right: 20px;
@@ -131,67 +147,35 @@
   </head>
   <body>
     <nav>
-      <div id="navhead"> 
+      <div id="navhead">
         <h1>Linked Movie Collection</h1>
-        <button class="btn btn-success">Add movie to collection</button>
-      </div>      
-      <div id="navcontent" class="list-group">
-        <a href="#" class="list-group-item">Shining</a>
-        <a href="#" class="list-group-item">Shining</a>
-        <a href="#" class="list-group-item">Shining</a>
       </div>
+      <div id="navcontent" class="list-group loading"></div>
     </nav>
-    <div id=content>
+    <div id="content">
       <noscript>Please activate Javascript</noscript>
-      <p class="lead">Select one of your movies or add one with the "Add" button</p>
-      <p id=form style="display:none"><input class=form-control type=text placeholder="Enter the movie title to search for ..."></p>
-      <output>
-        <h2 id="movie-title">The Shining (1980)</h2>       
-        <p><span class="runtime"><b>Runtime:</b>&nbsp;119m</span><a href="http://www.imdb.com/title/tt0081505/" target="_blank">Movie on IMDB</a></p>
-        <div id="movie-top">
-          <span id="movie-directors">
-            <h3>Directors</h3>
-            <ol>
-              <li>Stanley Kubrick</li>
-            </ol>
-          </span>
-          <span id="movie-actors">
-            <h3>Actors</h3>
-            <ol>
-              <li>Jack Nicholson</li>
-              <li>Scatman Crothers</li>
-              <li>Barry Nelson</li>
-              <li>Shelley Duvall</li>
-              <li>Danny Lloyd</li>
-            </ol>
-          </span>          
-          <img id="movie-poster" src="http://ia.media-imdb.com/images/M/MV5BODMxMjE3NTA4Ml5BMl5BanBnXkFtZTgwNDc0NTIxMDE@._V1_SY317_CR1,0,214,317_.jpg" alt="Poster" />
-        </div>
-        <div id="movie-bottom">
-          <button type="button" class="btn btn-danger">Delete movie from collection</button>
-        </div>
-      </output>
+      <form><p>
+        <label for="search">Type to start search (then simply click on a search result to add it to your collection):</label>
+        <input id="search" class="form-control" type="text" placeholder="Enter the movie title to search for ..." autofocus>
+      </p></form>
+      <output></output>
     </div>
     <script id="movie-entry" type="text/plain">
-        <h2 id="movie-title">%TITLE%&nbsp;(%YEAR%)</h2>       
+        <h2 id="movie-title">%TITLE%&nbsp;(%YEAR%)</h2>
         <p><span class="runtime"><b>Runtime:</b>&nbsp;%RUNTIME%m</span><a href="%IMDBLINK%" target="_blank">Movie on IMDB</a></p>
         <div id="movie-top">
           <span id="movie-directors">
             <h3>Directors</h3>
-            <ol>
-              <li>%DIRECTORS%</li>
-            </ol>
+            <ol>%DIRECTORS%</ol>
           </span>
           <span id="movie-actors">
             <h3>Actors</h3><!-- Max. 5 actors -->
-            <ol>
-              <li>%ACTORS%</li>
-            </ol>
-          </span>          
+            <ol>%ACTORS%</ol>
+          </span>
           <img id="movie-poster" src="%IMGSRC%" alt="Poster" />
         </div>
         <div id="movie-bottom">
-          <button type="button" class="btn btn-danger">Delete movie from collection</button>
+          <button type="button" class="btn btn-danger" value="%RESID%">Delete movie from collection</button>
         </div>
     </script>
     <script src="bower_components/jquery/jquery.min.js"></script>
